@@ -2,10 +2,12 @@ from scipy.interpolate import interp1d
 import numpy as np
 import pycmpfit
 # phase, mean, _, _, _, _, = np.loadtxt(
-#     '/Users/jiawenyang/Packages/LCfitter/LCfPCA_He/bandSpecific_B.txt', skiprows=1, unpack=True)  # FIXME
+#     '/Users/jiawenyang/Packages/LCfitter/LCfPCA_He/bandSpecific_B.txt',
+#  skiprows=1, unpack=True)  # FIXME
 
 
-def stretch_model_val(t, template_phase, template_mean, theta, fit_range=[-10, 50]):
+def stretch_model_val(t, template_phase, template_mean, theta,
+                      fit_range=[-10, 50]):
     """Calculate stretch model value given time t.
     See https://arxiv.org/pdf/1107.2404.pdf
 
@@ -29,7 +31,8 @@ def stretch_model_val(t, template_phase, template_mean, theta, fit_range=[-10, 5
     return np.where(t < maxt,
                     np.where((t-maxt)/s1 <
                              fit_range[0], np.nan, imod0((t-maxt)/s1)),
-                    np.where((t-maxt)/s2 > fit_range[1], np.nan, imod0((t-maxt)/s2)))
+                    np.where((t-maxt)/s2 > fit_range[1],
+                             np.nan, imod0((t-maxt)/s2)))
 
     # if t < maxt:
     #     if (t-maxt)/s1 < -10:
